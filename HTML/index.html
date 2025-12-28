@@ -1,0 +1,313 @@
+    <link rel="stylesheet" href="/CSS/index.css">
+
+<header>
+    <div class="top-header">
+        <div class="logo">BikeXo</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search Bike or Scooters">
+        </div>
+        <div class="top-actions">
+    <div class="action-item dropdown-wrapper">
+        <span id="langBtn" > Default Language ▾</span>
+        <ul class="action-dropdown">
+            <li>English</li>
+            <li>नेपाली</li>
+          
+        </ul>
+    </div>
+
+    <div class="action-item">
+        <a href="login.html" data-i18n="login">Login</a>
+                <a href="BikeXo_SignUp.html" data-i18n="register">Register</a>
+
+    </div>
+
+    <div class="action-item dropdown-wrapper">
+        <span id="locationBtn">Nepal ▾</span>
+        <ul class="action-dropdown">
+            <li>Kathmandu</li>
+            <li>Pokhara</li>
+            <li>Biratnagar</li>
+        </ul>
+    </div>
+</div>
+
+    </div>
+
+<nav class="navbar">
+    <ul class="nav-menu">
+
+        <li class="nav-item">
+            <button class="nav-button">BIKES</button>
+            <ul class="dropdown">
+                <li><a href="new-bikes.html">New Bikes</a></li>
+                <li><a href="best-bikes.html">Best Bikes</a></li>
+                <li><a href="upcoming-bikes.html">Upcoming Bikes</a></li>
+                <li><a href="new-launches.html">New Bikes Launches</a></li>
+                
+                <li><a href="offers.html">Bike Offers</a></li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+            <button class="nav-button">SCOOTERS</button>
+            <ul class="dropdown">
+                <li><a href="new-scooters.html">Scooters</a></li>
+                <li><a href="Best-Scooters.html">Best Scooters</a></li>
+                <li><a href="upcoming-scooters.html">Upcoming Scooters</a></li>
+                <li><a href="New-upcoming-scooters.html">New Upcoming Scooters</a></li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+            <button class="nav-button">USED BIKES</button>
+            <ul class="dropdown">
+                <li><a href="purchased-used-bikes.html">Purchased Used Bikes</a></li>
+                <li><a href="Sell-Used-Bikes.html">Sell Used Bikes</a></li>
+                <li><a href="Search-Used-Bikes.html">Search Used Bikes</a></li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+            <button class="nav-button">COMPARE BIKES</button>
+            <ul class="dropdown">
+                <li><a href="By-Brands.html">By Brands</a></li>
+                <li><a href="By-Price.html">By Price</a></li>
+                <li><a href="custom.html">Custom</a></li>
+            </ul>
+        </li>
+
+        <!-- FIXED ITEMS -->
+        <li class="nav-item simple-link">
+            <a href="showrooms.html">Showrooms</a>
+        </li>
+
+        <li class="nav-item simple-link">
+            <a href="review.html">Review</a>
+        </li>
+
+    </ul>
+</nav>
+
+<section class="bg-section">
+  
+  <div class="card">
+    <!-- Search from here content -->
+  </div>
+
+</section>
+
+<div class="card">
+    <h2>Search from here:</h2>
+
+    <div class="toggle">
+        <button id="newBtn" class="active" onclick="selectNew()">New Bike</button>
+        <button id="usedBtn" onclick="selectUsed()">Used Bike</button>
+    </div>
+<div class="radio-group">
+    <label>
+        <input type="radio" name="filter" checked onclick="showBrand()">
+        By Brand
+    </label>
+    <label>
+        <input type="radio" name="filter" onclick="showBudget()">
+        By Budget
+    </label>
+</div>
+
+
+
+  <!-- New Bike - By Brand -->
+<div id="newBrand">
+    <select id="brand" onchange="loadModels()">
+        <option>Honda</option>
+        <option>Yamaha</option>
+        <option>Bajaj</option>
+    </select>
+
+    <select id="model">
+        <option>Select Model</option>
+    </select>
+</div>
+
+<!-- New Bike - By Budget -->
+<div id="newBudget" style="display:none;">
+    <select>
+        <option>Select Budget</option>
+        <option>Under 2 Lakhs</option>
+        <option>2 – 3 Lakhs</option>
+        <option>3 – 5 Lakhs</option>
+        <option>Above 5 Lakhs</option>
+    </select>
+
+    <select>
+        <option>All Brand Type</option>
+        <option>Honda</option>
+        <option>Yamaha</option>
+        <option>Bajaj</option>
+        <option>Suzuki</option>
+    </select>
+</div>
+
+<!-- Used Bike - By Brand -->
+<div id="usedBrand" style="display:none;">
+    <select>
+        <option>Select Brand</option>
+        <option>Honda</option>
+        <option>Yamaha</option>
+        <option>Bajaj</option>
+    </select>
+
+    <select>
+        <option>Select City</option>
+        <option>Kathmandu</option>
+        <option>Pokhara</option>
+        <option>Chitwan</option>
+    </select>
+</div>
+
+<!-- Used Bike - By Budget -->
+<div id="usedBudget" style="display:none;">
+    <select>
+        <option>Select Budget</option>
+        <option>Under 1 Lakh</option>
+        <option>1 – 2 Lakhs</option>
+        <option>2 – 3 Lakhs</option>
+    </select>
+
+    <select>
+        <option>Select City</option>
+        <option>Kathmandu</option>
+        <option>Pokhara</option>
+        <option>Chitwan</option>
+    </select>
+</div>
+
+
+    <button class="search-btn">Search</button>
+
+    <div class="advanced">
+        <a href="#">Advanced Search →</a>
+    </div>
+</div>
+
+
+
+
+
+
+   <section class="browse-section">
+    <h2>Top Featured Brands</h2> 
+
+     <div class="browse-tabs">
+        <span class="tab" onclick="showTab('brand')">Brands</span>
+       <span class="tab " onclick="showTab('budget')">Budget</span>
+        <span class="tab">Body Style</span>
+        <span class="tab">Mileage</span>
+        <span class="tab">Engine</span>
+    </div>
+    
+
+    <div class="brand-grid">
+        <div class="brand-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg" alt="Honda">
+            <p>Honda</p>
+        </div>
+
+        <div class="brand-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Yamaha_Motor_Logo.svg" alt="Yamaha">
+            <p>Yamaha</p>
+        </div>
+
+        <div class="brand-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Royal_Enfield_logo.svg" alt="Royal Enfield">
+            <p>Royal Enfield</p>
+        </div>
+
+        <div class="brand-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/KTM_Logo.svg" alt="KTM">
+            <p>KTM</p>
+        </div>
+
+        <div class="brand-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Bajaj_Auto_Logo.svg" alt="Bajaj">
+            <p>Bajaj</p>
+        </div>
+    </div>
+
+    <a href="#" class="view-all">View All Brands</a>
+</section>
+
+<section class="latest-bikes">
+  <h2>Latest Bikes & Scooters</h2>
+
+  <div class="bike-row">
+
+  <div class="bike-card">
+  <span class="launch-badge">JUST LAUNCHED - 26th DEC</span>
+
+  <a href="bike_spec.html" class="bike-link">
+    <img src="images/bike1.png" alt="Kawasaki Ninja 1100SX">
+  </a>
+
+  <div class="card-content">
+    <a href="bike_spec.html" class="bike-link">
+      <h3>Kawasaki Ninja 1100SX</h3>
+    </a>
+
+    <p class="price">₹14.42 Lakh*</p>
+    <button class="offer-btn">Get Year End Offers</button>
+  </div>
+</div>
+
+
+    <div class="bike-card">
+      <span class="launch-badge">JUST LAUNCHED - 25th DEC</span>
+
+      <img src="images/bike2.png" alt="Bike">
+
+      <div class="card-content">
+        <h3>Kawasaki Versys 650</h3>
+        <p class="price">₹8.48 - 8.63 Lakh*</p>
+
+        <button class="offer-btn">Get Year End Offers</button>
+      </div>
+    </div>
+
+    <div class="bike-card">
+      <span class="launch-badge">JUST LAUNCHED - 24th DEC</span>
+
+      <img src="images/bike3.png" alt="Bike">
+
+      <div class="card-content">
+        <h3>Bajaj Pulsar 150</h3>
+        <p class="price">₹1.09 - 1.15 Lakh*</p>
+
+        <button class="offer-btn">Get Year End Offers</button>
+      </div>
+    </div>
+
+    <div class="bike-card">
+      <span class="launch-badge">JUST LAUNCHED - 23rd DEC</span>
+
+      <img src="images/bike4.png" alt="Bike">
+
+      <div class="card-content">
+        <h3>Kawasaki Ninja 650</h3>
+        <p class="price">₹7.77 - 7.91 Lakh*</p>
+
+        <button class="offer-btn">Get Year End Offers</button>
+      </div>
+    </div>
+
+  </div>
+
+  <a href="#" class="view-all">View All Latest Bikes</a>
+</section>
+
+
+
+
+      <script src="/JS/index.js"></script>
+
+</header>
