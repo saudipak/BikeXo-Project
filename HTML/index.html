@@ -1,4 +1,12 @@
-    <link rel="stylesheet" href="/CSS/index.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BikeXo</title>
+</head>
+<body>
+      <link rel="stylesheet" href="/CSS/index.css">
 
 <header>
     <div class="top-header">
@@ -7,17 +15,10 @@
             <input type="text" placeholder="Search Bike or Scooters">
         </div>
         <div class="top-actions">
-    <div class="action-item dropdown-wrapper">
-        <span id="langBtn" > Default Language ▾</span>
-        <ul class="action-dropdown">
-            <li>English</li>
-            <li>नेपाली</li>
-          
-        </ul>
-    </div>
+   
 
     <div class="action-item">
-        <a href="login.html" data-i18n="login">Login</a>
+        <a href="login.html" data-i18n="login">Login /</a>
                 <a href="BikeXo_SignUp.html" data-i18n="register">Register</a>
 
     </div>
@@ -38,7 +39,7 @@
     <ul class="nav-menu">
 
         <li class="nav-item">
-            <button class="nav-button">BIKES</button>
+            <button class="nav-button">BIKES▼</button>
             <ul class="dropdown">
                 <li><a href="new-bikes.html">New Bikes</a></li>
                 <li><a href="best-bikes.html">Best Bikes</a></li>
@@ -50,7 +51,7 @@
         </li>
 
         <li class="nav-item">
-            <button class="nav-button">SCOOTERS</button>
+            <button class="nav-button">SCOOTERS▼</button>
             <ul class="dropdown">
                 <li><a href="new-scooters.html">Scooters</a></li>
                 <li><a href="Best-Scooters.html">Best Scooters</a></li>
@@ -60,7 +61,7 @@
         </li>
 
         <li class="nav-item">
-            <button class="nav-button">USED BIKES</button>
+            <button class="nav-button">USED BIKES▼</button>
             <ul class="dropdown">
                 <li><a href="purchased-used-bikes.html">Purchased Used Bikes</a></li>
                 <li><a href="Sell-Used-Bikes.html">Sell Used Bikes</a></li>
@@ -69,21 +70,21 @@
         </li>
 
         <li class="nav-item">
-            <button class="nav-button">COMPARE BIKES</button>
+            <button class="nav-button">COMPARE BIKES▼</button>
             <ul class="dropdown">
-                <li><a href="By-Brands.html">By Brands</a></li>
-                <li><a href="By-Price.html">By Price</a></li>
-                <li><a href="custom.html">Custom</a></li>
+                <li><a href="Bikes.html">Bikes</a></li>
+                <li><a href="Scooters.html">Scooters</a></li>
+                
             </ul>
         </li>
 
         <!-- FIXED ITEMS -->
         <li class="nav-item simple-link">
-            <a href="showrooms.html">Showrooms</a>
+            <a href="showrooms.html">Showrooms▼</a>
         </li>
 
         <li class="nav-item simple-link">
-            <a href="review.html">Review</a>
+            <a href="review.html">News & Review▼</a>
         </li>
 
     </ul>
@@ -190,124 +191,358 @@
         <a href="#">Advanced Search →</a>
     </div>
 </div>
+<div class="h3">
+<h3>Browse Bike By</h3></div>
+<ul class="tabs"> 
+ 
+    <li class="tab active" onclick="openTab('home')">Brands</li>
+    <li class="tab" onclick="openTab('profile')">Budget</li>
+    <li class="tab" onclick="openTab('contact')">Mileage</li>
+    <li class="tab" onclick="openTab('Engine')">Engine</li>
+   
+  </ul>
+ 
+  <!-- Tab Content -->
+  <div class="tab-content">
 
+    <div id="home" class="content active">
+     
+      <section class="brand-section">
 
-
-
-
-
-   <section class="browse-section">
-    <h2>Top Featured Brands</h2> 
-
-     <div class="browse-tabs">
-        <span class="tab" onclick="showTab('brand')">Brands</span>
-       <span class="tab " onclick="showTab('budget')">Budget</span>
-        <span class="tab">Body Style</span>
-        <span class="tab">Mileage</span>
-        <span class="tab">Engine</span>
-    </div>
-    
-
-    <div class="brand-grid">
-        <div class="brand-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg" alt="Honda">
-            <p>Honda</p>
-        </div>
-
-        <div class="brand-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Yamaha_Motor_Logo.svg" alt="Yamaha">
-            <p>Yamaha</p>
-        </div>
-
-        <div class="brand-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Royal_Enfield_logo.svg" alt="Royal Enfield">
-            <p>Royal Enfield</p>
-        </div>
-
-        <div class="brand-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/KTM_Logo.svg" alt="KTM">
-            <p>KTM</p>
-        </div>
-
-        <div class="brand-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Bajaj_Auto_Logo.svg" alt="Bajaj">
-            <p>Bajaj</p>
-        </div>
-    </div>
-
-    <a href="#" class="view-all">View All Brands</a>
-</section>
-
-<section class="latest-bikes">
-  <h2>Latest Bikes & Scooters</h2>
-
-  <div class="bike-row">
-
-  <div class="bike-card">
-  <span class="launch-badge">JUST LAUNCHED - 26th DEC</span>
-
-  <a href="bike_spec.html" class="bike-link">
-    <img src="images/bike1.png" alt="Kawasaki Ninja 1100SX">
+  <a href="honda.html" class="brand-card">
+    <img src="/Image/Honda.png" alt="Honda">
+    <span>Honda</span>
   </a>
 
-  <div class="card-content">
-    <a href="bike_spec.html" class="bike-link">
-      <h3>Kawasaki Ninja 1100SX</h3>
+  <a href="royal-enfield.html" class="brand-card">
+    <img src="/Image/Royal Enfield.png" alt="Royal Enfield">
+    <span>Royal Enfield</span>
+  </a>
+
+  <a href="yamaha.html" class="brand-card">
+    <img src="/Image/Yamaha.png" alt="Yamaha">
+    <span>Yamaha</span>
+  </a>
+
+  <a href="ktm.html" class="brand-card">
+    <img src="/Image/KTM.png" alt="KTM">
+    <span>KTM</span>
+  </a>
+
+  <a href="tvs.html" class="brand-card">
+    <img src="/Image/TVS.png" alt="TVS">
+    <span>TVS</span>
+  </a>
+  <div class="advanced-a">
+  <a href="#">View all brands →</a>
+  </div>
+
+</section>
+
+    </div>
+
+    <div id="profile" class="content">
+     
+      <div class="price-container">
+        
+    <a href="?price=30-50" class="price-box">Rs. 30,000 - 50,000</a>
+    <a href="?price=50-70" class="price-box">Rs. 50,000 - 70,000</a>
+    <a href="?price=70-100" class="price-box">Rs. 70,000 - 1 Lakh</a>
+    <a href="?price=100-200" class="price-box">Rs. 1 - 2 Lakh</a>
+    <a href="?price=200-500" class="price-box">Rs. 2 - 5 Lakh</a>
+    <a href="?price=500+" class="price-box">Above 5 Lakh</a>
+  </div>
+
+    </div>
+
+    <div id="contact" class="content">
+      <div class="price-container">
+        
+    <a href="?below-30" class="price-box">Below 30KM/L</a>
+    <a href="?30-50" class="price-box">30-50 KM/L</a>
+    <a href="?50-70" class="price-box">50-70 KM/L</a>
+    <a href="?bestmileage" class="price-box">Best Mileage</a>
+  </div>
+      
+    </div>
+    <div id="Engine" class="content">
+      <div class="price-container">
+
+        <a href="?upto-100cc" class="price-box">Upto 100cc</a>
+    <a href="?100-125cc" class="price-box">100-125cc</a>
+    <a href="?125-150cc" class="price-box">125-150cc</a>
+    <a href="?150-200cc" class="price-box">150-200cc</a>
+    <a href="?200-250cc" class="price-box">200-250cc</a>
+    <a href="?250-500cc" class="price-box">250-500cc</a>
+    <a href="?500cc-above" class="price-box">Above 500cc</a>
+        
+    </div>
+
+  </div>
+
+
+
+<section class="bd-section">
+  <h2 class="bd-title">Latest Bikes & Scooters</h2>
+
+  <div class="bd-row">
+
+    <a href="bike-details.html" class="bd-card">
+      <span class="bd-badge">JUST LAUNCHED - 26th DEC</span>
+      <div class="bd-img">
+        <img src="images/ninja.png" alt="Kawasaki Ninja 1100SX">
+      </div>
+      <div class="bd-info">
+        <h3>Kawasaki Ninja 1100SX</h3>
+        <p class="bd-price">₹14.42 Lakh*</p>
+      </div>
     </a>
 
-    <p class="price">₹14.42 Lakh*</p>
-    <button class="offer-btn">Get Year End Offers</button>
+    <a href="bike-details.html" class="bd-card">
+      <span class="bd-badge">JUST LAUNCHED - 29th DEC</span>
+      <div class="bd-img">
+        <img src="images/ducati.png" alt="Ducati XDiavel V4">
+      </div>
+      <div class="bd-info">
+        <h3>Ducati XDiavel V4</h3>
+        <p class="bd-price">₹30.89 - 31.20 Lakh*</p>
+      </div>
+    </a>
+
+    <a href="bike-details.html" class="bd-card">
+      <span class="bd-badge">JUST LAUNCHED - 29th DEC</span>
+      <div class="bd-img">
+        <img src="images/vulcan.png" alt="Kawasaki Vulcan S">
+      </div>
+      <div class="bd-info">
+        <h3>Kawasaki Vulcan S</h3>
+        <p class="bd-price">₹8.13 Lakh*</p>
+      </div>
+    </a>
+    <a href="bike-details.html" class="bd-card">
+      <span class="bd-badge">JUST LAUNCHED - 29th DEC</span>
+      <div class="bd-img">
+        <img src="images/ducati.png" alt="Ducati XDiavel V4">
+      </div>
+      <div class="bd-info">
+        <h3>Ducati XDiavel V4</h3>
+        <p class="bd-price">₹30.89 - 31.20 Lakh*</p>
+      </div>
+    </a>
+    <a href="bike-details.html" class="bd-card">
+      <span class="bd-badge">JUST LAUNCHED - 29th DEC</span>
+      <div class="bd-img">
+        <img src="images/ducati.png" alt="Ducati XDiavel V4">
+      </div>
+      <div class="bd-info">
+        <h3>Ducati XDiavel V4</h3>
+        <p class="bd-price">₹30.89 - 31.20 Lakh*</p>
+      </div>
+    </a>
+     <a href="bike-details.html" class="bd-card">
+      <span class="bd-badge">JUST LAUNCHED - 29th DEC</span>
+      <div class="bd-img">
+        <img src="images/ducati.png" alt="Ducati XDiavel V4">
+      </div>
+      <div class="bd-info">
+        <h3>Ducati XDiavel V4</h3>
+        <p class="bd-price">₹30.89 - 31.20 Lakh*</p>
+      </div>
+    </a>
+  
+
   </div>
-</div>
-
-
-    <div class="bike-card">
-      <span class="launch-badge">JUST LAUNCHED - 25th DEC</span>
-
-      <img src="images/bike2.png" alt="Bike">
-
-      <div class="card-content">
-        <h3>Kawasaki Versys 650</h3>
-        <p class="price">₹8.48 - 8.63 Lakh*</p>
-
-        <button class="offer-btn">Get Year End Offers</button>
-      </div>
-    </div>
-
-    <div class="bike-card">
-      <span class="launch-badge">JUST LAUNCHED - 24th DEC</span>
-
-      <img src="images/bike3.png" alt="Bike">
-
-      <div class="card-content">
-        <h3>Bajaj Pulsar 150</h3>
-        <p class="price">₹1.09 - 1.15 Lakh*</p>
-
-        <button class="offer-btn">Get Year End Offers</button>
-      </div>
-    </div>
-
-    <div class="bike-card">
-      <span class="launch-badge">JUST LAUNCHED - 23rd DEC</span>
-
-      <img src="images/bike4.png" alt="Bike">
-
-      <div class="card-content">
-        <h3>Kawasaki Ninja 650</h3>
-        <p class="price">₹7.77 - 7.91 Lakh*</p>
-
-        <button class="offer-btn">Get Year End Offers</button>
-      </div>
-    </div>
-
+  <div class="advanced-a">
+  <a href="#">View all latest bikes →</a>
   </div>
-
-  <a href="#" class="view-all">View All Latest Bikes</a>
 </section>
 
 
+<div class="popular-comparisons pc-section">
+    <h2>Popular Comparisons</h2>
+
+    <div class="pc-tabs">
+      <span class="pc-tab active" data-tab="bikes">Bikes</span>
+      <span class="pc-tab" data-tab="scooters">Scooters</span>
+    </div>
+
+    <!-- BIKES -->
+    <div class="pc-cards" id="bikes">
+      <!-- Bike Card 1 -->
+      <a href="compare.html?bike1=hunter350&bike2=ronin" class="pc-card">
+        <div class="pc-images">
+          <img src="images/hunter.png" alt="Hunter 350">
+          <span class="vs">VS</span>
+          <img src="images/ronin.png" alt="Ronin">
+        </div>
+        <div class="pc-info">
+          <div>
+            <h4>Royal Enfield Hunter 350</h4>
+            <p>₹1.38 - 1.67 Lakh*</p>
+          </div>
+          <div>
+            <h4>TVS Ronin</h4>
+            <p>₹1.26 - 1.60 Lakh*</p>
+          </div>
+        </div>
+        <button class="pc-btn">Hunter 350 vs Ronin</button>
+      </a>
+
+      <!-- Bike Card 2 -->
+      <a href="compare.html?bike1=cb500&bike2=mt15" class="pc-card">
+        <div class="pc-images">
+          <img src="images/cb500.png" alt="CB500">
+          <span class="vs">VS</span>
+          <img src="images/mt15.png" alt="MT15">
+        </div>
+        <div class="pc-info">
+          <div>
+            <h4>Honda CB500</h4>
+            <p>₹5.00 - 5.50 Lakh*</p>
+          </div>
+          <div>
+            <h4>Yamaha MT-15</h4>
+            <p>₹1.80 - 2.00 Lakh*</p>
+          </div>
+        </div>
+        <button class="pc-btn">CB500 vs MT-15</button>
+      </a>
+
+      <!-- Bike Card 3 -->
+      <a href="compare.html?bike1=dominar&bike2=apache310" class="pc-card">
+        <div class="pc-images">
+          <img src="images/dominar.png" alt="Dominar">
+          <span class="vs">VS</span>
+          <img src="images/apache310.png" alt="Apache 310">
+        </div>
+        <div class="pc-info">
+          <div>
+            <h4>Bajaj Dominar 400</h4>
+            <p>₹2.20 - 2.50 Lakh*</p>
+          </div>
+          <div>
+            <h4>TVS Apache RR 310</h4>
+            <p>₹2.40 - 2.70 Lakh*</p>
+          </div>
+        </div>
+        <button class="pc-btn">Dominar vs Apache 310</button>
+      </a>
+
+      <!-- Bike Card 4 -->
+      <a href="compare.html?bike1=classic350&bike2=meteor350" class="pc-card">
+        <div class="pc-images">
+          <img src="images/classic350.png" alt="Classic 350">
+          <span class="vs">VS</span>
+          <img src="images/meteor350.png" alt="Meteor 350">
+        </div>
+        <div class="pc-info">
+          <div>
+            <h4>Royal Enfield Classic 350</h4>
+            <p>₹1.50 - 1.80 Lakh*</p>
+          </div>
+          <div>
+            <h4>Royal Enfield Meteor 350</h4>
+            <p>₹1.60 - 1.90 Lakh*</p>
+          </div>
+        </div>
+        <button class="pc-btn">Classic 350 vs Meteor 350</button>
+      </a>
+    </div>
+
+    <!-- SCOOTERS -->
+    <div class="pc-cards hidden" id="scooters">
+      <!-- Scooter Card 1 -->
+      <a href="compare.html?scooter1=activa&scooter2=jupiter" class="pc-card">
+        <div class="pc-images">
+          <img src="images/activa.png" alt="Activa">
+          <span class="vs">VS</span>
+          <img src="images/jupiter.png" alt="Jupiter">
+        </div>
+        <div class="pc-info">
+          <div>
+            <h4>Honda Activa 6G</h4>
+            <p>₹76,000 - 82,000*</p>
+          </div>
+          <div>
+            <h4>TVS Jupiter</h4>
+            <p>₹74,000 - 80,000*</p>
+          </div>
+        </div>
+        <button class="pc-btn">Activa vs Jupiter</button>
+      </a>
+
+      <!-- Scooter Card 2 -->
+      <a href="compare.html?scooter1=scooty&scooter2=vespa" class="pc-card">
+        <div class="pc-images">
+          <img src="images/scooty.png" alt="Scooty">
+          <span class="vs">VS</span>
+          <img src="images/vespa.png" alt="Vespa">
+        </div>
+        <div class="pc-info">
+          <div>
+            <h4>TVS Scooty Pep+</h4>
+            <p>₹65,000 - 70,000*</p>
+          </div>
+          <div>
+            <h4>Vespa SXL</h4>
+            <p>₹1,20,000 - 1,30,000*</p>
+          </div>
+        </div>
+        <button class="pc-btn">Scooty vs Vespa</button>
+      </a>
+
+      <!-- Scooter Card 3 -->
+      <a href="compare.html?scooter1=jog&bike2=pleasure" class="pc-card">
+        <div class="pc-images">
+          <img src="images/jog.png" alt="Jog">
+          <span class="vs">VS</span>
+          <img src="images/pleasure.png" alt="Pleasure">
+        </div>
+        <div class="pc-info">
+          <div>
+            <h4>Yamaha Jog</h4>
+            <p>₹70,000 - 75,000*</p>
+          </div>
+          <div>
+            <h4>Honda Pleasure</h4>
+            <p>₹68,000 - 73,000*</p>
+          </div>
+        </div>
+        <button class="pc-btn">Jog vs Pleasure</button>
+      </a>
+
+      <!-- Scooter Card 4 -->
+      <a href="compare.html?scooter1=maestro&scooter2=destini" class="pc-card">
+        <div class="pc-images">
+          <img src="images/maestro.png" alt="Maestro">
+          <span class="vs">VS</span>
+          <img src="images/destini.png" alt="Destini">
+        </div>
+        <div class="pc-info">
+          <div>
+            <h4>TVS Maestro Edge</h4>
+            <p>₹85,000 - 90,000*</p>
+          </div>
+          <div>
+            <h4>Hero Destini 125</h4>
+            <p>₹78,000 - 82,000*</p>
+          </div>
+        </div>
+        <button class="pc-btn">Maestro vs Destini</button>
+      </a>
+    </div>
+
+    <a href="compare.html" class="pc-view">View All Comparisons</a>
+  </div>
 
 
-      <script src="/JS/index.js"></script>
+      
 
 </header>
+
+
+  
+</body>
+<script src="/JS/indeex.js"></script>
+
+</html>

@@ -183,27 +183,122 @@ function loadModels() {
 
 
 
-function showTab(tabId) {
-    // Tabs
-    document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
-    event.target.classList.add("active");
 
-    // Contents
-    document.querySelectorAll(".tab-content").forEach(c => c.classList.add("hidden"));
-    document.getElementById(tabId).classList.remove("hidden");
+
+
+
+
+function openTab(tabId) {
+  // Hide all contents
+  const contents = document.querySelectorAll('.content');
+  contents.forEach(content => content.classList.remove('active'));
+
+  // Remove active from tabs
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => tab.classList.remove('active'));
+
+  // Show selected content
+  document.getElementById(tabId).classList.add('active');
+
+  // Activate clicked tab
+  event.target.classList.add('active');
 }
 
-// Budget selection
-document.querySelectorAll(".budget-btn").forEach(btn => {
-    btn.addEventListener("click", function () {
-        document.querySelectorAll(".budget-btn").forEach(b => b.classList.remove("active"));
-        this.classList.add("active");
 
-        // You can redirect or filter here
-        console.log("Selected Budget:", this.innerText);
-    });
+
+
+
+const params = new URLSearchParams(window.location.search);
+const selectedPrice = params.get("price");
+
+if (selectedPrice) {
+  document.querySelectorAll(".price-box").forEach(box => {
+    if (box.getAttribute("href").includes(selectedPrice)) {
+      box.classList.add("active");
+      document.getElementById("result").innerText =
+        "Selected Price Range: " + box.innerText;
+    }
+  });
+}
+
+
+
+
+
+const bikes = {
+  ninja: {
+    name: "Kawasaki Ninja 1100SX",
+    specs: [
+      "Engine: 1099cc",
+      "Mileage: 19 km/l",
+      "Power: 140 PS",
+      "Transmission: 6-Speed",
+      "Fuel Tank: 19L"
+    ]
+  },
+  ducati: {
+    name: "Ducati XDiavel V4",
+    specs: [
+      "Engine: 1158cc",
+      "Mileage: 18 km/l",
+      "Power: 168 PS",
+      "Transmission: 6-Speed",
+      "Fuel Tank: 20L"
+    ]
+  },
+  vulcan: {
+    name: "Kawasaki Vulcan S",
+    specs: [
+      "Engine: 649cc",
+      "Mileage: 24 km/l",
+      "Power: 61 PS",
+      "Transmission: 6-Speed",
+      "Fuel Tank: 14L"
+    ]
+  }
+};
+
+function openBike(bikeKey) {
+  document.getElementById("bikeName").innerText = bikes[bikeKey].name;
+  const specList = document.getElementById("bikeSpecs");
+  specList.innerHTML = "";
+
+  bikes[bikeKey].specs.forEach(spec => {
+    const li = document.createElement("li");
+    li.innerText = spec;
+    specList.appendChild(li);
+  });
+
+  document.getElementById("bikeModal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("bikeModal").style.display = "none";
+}
+
+
+
+document.querySelectorAll(".pc-card").forEach(card => {
+  card.addEventListener("click", () => {
+    window.location.href = card.getAttribute("href");
+  });
 });
 
 
+document.addEventListener("DOMContentLoaded", function () {
+      const tabs = document.querySelectorAll(".pc-tabs span");
+      const sections = document.querySelectorAll(".pc-cards");
 
+      tabs.forEach(tab => {
+        tab.addEventListener("click", function () {
+          tabs.forEach(t => t.classList.remove("active"));
+          this.classList.add("active");
 
+          sections.forEach(section => section.classList.add("hidden"));
+
+          const targetId = this.getAttribute("data-tab");
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) targetSection.classList.remove("hidden");
+        });
+      });
+    });
