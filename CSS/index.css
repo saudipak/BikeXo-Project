@@ -391,35 +391,6 @@ a {
     font-size: 22px;
 }
 
-/* Tabs */
-.browse-tabs {
-    display: flex;
-    gap: 25px;
-    border-bottom: 2px solid #ddd;
-    margin-bottom: 25px;
-}
-
-.browse-tabs span {
-    padding-bottom: 10px;
-    cursor: pointer;
-    font-weight: 500;
-    color: #555;
-    position: relative;
-}
-
-.browse-tabs .active {
-    color: #000;
-}
-
-.browse-tabs .active::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -1px;
-    width: 100%;
-    height: 3px;
-    background: #d32f2f;
-}
 
 /* Brand Grid */
 .brand-grid {
