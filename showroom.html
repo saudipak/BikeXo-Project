@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Showroom</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:#f2f4f8;
+}
+
+.container{
+  width:90%;
+  max-width:1200px;
+  margin:60px auto;
+}
+
+.hero{
+  background:#fff;
+  padding:40px;
+  border-radius:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.05);
+  margin-bottom:50px;
+}
+
+.hero h1{
+  font-size:28px;
+}
+
+.info{
+  margin-top:10px;
+  font-size:14px;
+  color:#555;
+}
+
+.btn{
+  padding:12px 18px;
+  border-radius:10px;
+  text-decoration:none;
+  font-size:14px;
+  display:inline-block;
+  margin-top:20px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.btn-dark{
+  background:#111;
+  color:#fff;
+}
+
+.btn-light{
+  border:1px solid #ddd;
+  color:#111;
+}
+
+.bike-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+.bike-card{
+  background:#fff;
+  padding:20px;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.05);
+}
+
+.bike-card img{
+  width:100%;
+  height:150px;
+  object-fit:contain;
+  margin-bottom:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="hero">
+    <h1 id="branchName">Finding nearest branch...</h1>
+    <div class="info" id="branchLocation"></div>
+    <div class="info" id="branchPhone"></div>
+
+    <a href="#" id="callBtn" class="btn btn-dark">Call Now</a>
+    <a href="#" onclick="getDirection()" class="btn btn-light">
+      Get Direction
+    </a>
+  </div>
+
+  <h2>Available Bikes</h2>
+  <div class="bike-grid" id="bikeGrid"></div>
+
+</div>
+
+<script>
+
+/* ===== MULTIPLE BRANCHES PER BRAND ===== */
+
+const showrooms = {
+  yamaha: [
+    {
+      name:"Yamaha Kathmandu Branch",
+      location:"Kathmandu",
+      phone:"9800000000",
+      lat:27.7172,
+      lng:85.3240,
+      bikes:[
+        {name:"R15 V4",price:"4,50,000",img:"https://i.ibb.co/V2XWwYF/r15.png"}
+      ]
+    },
+    {
+      name:"Yamaha Pokhara Branch",
+      location:"Pokhara",
+      phone:"9811111111",
+      lat:28.2096,
+      lng:83.9856,
+      bikes:[
+        {name:"MT-15",price:"4,20,000",img:"https://i.ibb.co/1Jp0rjL/mt15.png"}
+      ]
+    }
+  ]
+};
+
+const params = new URLSearchParams(window.location.search);
+const brand = params.get("brand");
+let nearestBranch = null;
+
+/* ===== Distance Formula ===== */
+function getDistance(lat1, lon1, lat2, lon2){
+  const R = 6371;
+  const dLat = (lat2-lat1) * Math.PI/180;
+  const dLon = (lon2-lon1) * Math.PI/180;
+
+  const a =
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(lat1*Math.PI/180) *
+    Math.cos(lat2*Math.PI/180) *
+    Math.sin(dLon/2) * Math.sin(dLon/2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
+}
+
+/* ===== Find Nearest Branch ===== */
+function findNearestBranch(userLat,userLng){
+
+  const branches = showrooms[brand];
+  let minDistance = Infinity;
+
+  branches.forEach(branch=>{
+    const distance = getDistance(
+      userLat,userLng,
+      branch.lat,branch.lng
+    );
+
+    if(distance < minDistance){
+      minDistance = distance;
+      nearestBranch = branch;
+    }
+  });
+
+  loadBranch();
+}
+
+/* ===== Load Branch UI ===== */
+function loadBranch(){
+  document.getElementById("branchName").innerText = nearestBranch.name;
+  document.getElementById("branchLocation").innerText = "📍 " + nearestBranch.location;
+  document.getElementById("branchPhone").innerText = "📞 " + nearestBranch.phone;
+  document.getElementById("callBtn").href = "tel:" + nearestBranch.phone;
+
+  const grid = document.getElementById("bikeGrid");
+  grid.innerHTML = "";
+
+  nearestBranch.bikes.forEach(bike=>{
+    grid.innerHTML += `
+      <div class="bike-card">
+        <img src="${bike.img}">
+        <h3>${bike.name}</h3>
+        <div>NPR ${bike.price}</div>
+      </div>
+    `;
+  });
+}
+
+/* ===== Auto Detect User Location ===== */
+navigator.geolocation.getCurrentPosition(function(position){
+  const userLat = position.coords.latitude;
+  const userLng = position.coords.longitude;
+
+  findNearestBranch(userLat,userLng);
+
+}, function(){
+  alert("Location permission denied. Showing first branch.");
+  nearestBranch = showrooms[brand][0];
+  loadBranch();
+});
+
+/* ===== Direction Button ===== */
+function getDirection(){
+  if(!nearestBranch) return;
+
+  navigator.geolocation.getCurrentPosition(function(position){
+    const userLat = position.coords.latitude;
+    const userLng = position.coords.longitude;
+
+    const url = `https://www.google.com/maps/dir/${userLat},${userLng}/${nearestBranch.lat},${nearestBranch.lng}`;
+    window.open(url,"_blank");
+  });
+}
+
+</script>
+
+</body>
+</html>

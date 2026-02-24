@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BikeXo</title>
+</head>
+<style>
+  .review-section{
+  max-width:900px;
+  margin:50px auto;
+  font-family:sans-serif;
+}
+
+.review-box{
+  background:#fff;
+  padding:25px;
+  border-radius:10px;
+  box-shadow:0 0 15px rgba(0,0,0,0.05);
+}
+
+.review-box select,
+.review-box input,
+.review-box textarea{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+
+.star-input span{
+  font-size:30px;
+  cursor:pointer;
+  color:#ccc;
+}
+
+.review-box button{
+  background:#ffcc00;
+  border:none;
+  padding:12px 20px;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.review-card{
+  background:#f9f9f9;
+  padding:15px;
+  border-radius:8px;
+  margin:15px 0;
+}
+
+.review-card .stars{
+  color:gold;
+}
+
+</style>
+<body>
+      <link rel="stylesheet" href="index.css">
+
+<header>
+  
+
+    <div class="top-header">
+        <div class="logo">BikeXo</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search Bike or Scooters">
+        </div>
+        <div class="top-actions">
+   
+
+    <div class="action-item">
+        <a href="BikeXo/PHP/user/login.php" data-i18n="login">Login /</a>
+                <a href="BikeXo/PHP/user/register.php" data-i18n="register">Register</a>
+
+    </div>
+
+    
+</div>
+
+    </div>
+
+<nav class="navbar">
+    <ul class="nav-menu">
+
+         <li class="nav-item">
+            <button class="nav-button">BIKES▼</button>
+            <ul class="dropdown">
+                <li><a href="new-bikes.html">New Bikes</a></li>
+                <li><a href="best-bikes.html">Best Bikes</a></li>
+                <li><a href="upcoming-bikes.html">Upcoming Bikes</a></li>
+            </ul>
+        </li>
+
+                <li><a href="upcoming-bikes.html">Upcoming Bikes</a></li>
+                
+            </ul>
+        </li>
+
+        <li class="nav-item">
+            <button class="nav-button">SCOOTERS▼</button>
+            <ul class="dropdown">
+                <li><a href="new-scooters.html">Scooters</a></li>
+                <li><a href="Best-Scooters.html">Best Scooters</a></li>
+                <li><a href="upcoming-scooters.html">Upcoming Scooters</a></li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+            <a href="used-bikes-scooters.html">USED BIKE/SCOOTERS▼</a>
+            
+        </li>
+
+       <li class="nav-item simple-link">
+            <a href="compare.html">COMPARE▼</a>
+        </li>
+
+        <!-- FIXED ITEMS -->
+        <li class="nav-item simple-link">
+            <a href="showrooms.html">SHOWROOMS▼</a>
+        </li>
+
+        <li class="nav-item simple-link">
+            <a href="review.html">NEWS & REVIEWS▼</a>
+        </li>
+
+    </ul>
+</nav>
+
+
+
+
+<div class="h3">
+<h3>Browse Bike By</h3></div>
+<ul class="tabs"> 
+ 
+    <li class="tab active" onclick="openTab('home')">Brands</li>
+    <li class="tab" onclick="openTab('profile')">Budget</li>
+    <li class="tab" onclick="openTab('contact')">Mileage</li>
+    <li class="tab" onclick="openTab('Engine')">Engine</li>
+   
+  </ul>
+
+ 
+  
+ 
+  <!-- Tab Content -->
+  <div class="tab-content">
+
+    <div id="home" class="content active">
+     
+      <section class="brand-section">
+
+  <a href="honda.html" class="brand-card">
+    <img src="/BikeXo/Image/Honda.png" alt="Honda">
+    <span>Honda</span>
+  </a>
+
+  <a href="royal-enfield.html" class="brand-card">
+    <img src="/BikeXo/Image/Royal Enfield.png" alt="Royal Enfield">
+    <span>Royal Enfield</span>
+  </a>
+
+  <a href="yamaha.html" class="brand-card">
+    <img src="/BikeXo/Image/Yamaha.png" alt="Yamaha">
+    <span>Yamaha</span>
+  </a>
+
+  <a href="ktm.html" class="brand-card">
+    <img src="/BikeXo/Image/KTM.png" alt="KTM">
+    <span>KTM</span>
+  </a>
+
+  <a href="tvs.html" class="brand-card">
+    <img src="/BikeXo/Image/TVS.png" alt="TVS">
+    <span>TVS</span>
+  </a>
+  <div class="advanced-a">
+  <a href="#">View all brands →</a>
+  </div>
+
+</section></div>
+
+    
+
+    <div id="profile" class="content">
+     
+      <div class="price-container">
+        
+    <a href="?price=30-50" class="price-box">Rs. 30,000 - 50,000</a>
+    <a href="?price=50-70" class="price-box">Rs. 50,000 - 70,000</a>
+    <a href="?price=70-100" class="price-box">Rs. 70,000 - 1 Lakh</a>
+    <a href="?price=100-200" class="price-box">Rs. 1 - 2 Lakh</a>
+    <a href="?price=200-500" class="price-box">Rs. 2 - 5 Lakh</a>
+    <a href="?price=500+" class="price-box">Above 5 Lakh</a>
+  </div>
+
+    </div>
+
+    <div id="contact" class="content">
+      <div class="price-container">
+        
+    <a href="?below-30" class="price-box">Below 30KM/L</a>
+    <a href="?30-50" class="price-box">30-50 KM/L</a>
+    <a href="?50-70" class="price-box">50-70 KM/L</a>
+    <a href="?bestmileage" class="price-box">Best Mileage</a>
+  </div>
+      
+    </div>
+    <div id="Engine" class="content">
+      <div class="price-container">
+
+        <a href="?upto-100cc" class="price-box">Upto 100cc</a>
+    <a href="?100-125cc" class="price-box">100-125cc</a>
+    <a href="?125-150cc" class="price-box">125-150cc</a>
+    <a href="?150-200cc" class="price-box">150-200cc</a>
+    <a href="?200-250cc" class="price-box">200-250cc</a>
+    <a href="?250-500cc" class="price-box">250-500cc</a>
+    <a href="?500cc-above" class="price-box">Above 500cc</a>
+        
+    </div>
+
+  </div>
+
+
+
+
+<section class="bd-section">
+  <h2>Latest Bikes</h2>
+
+  <div class="bd-row" id="bikeRow"></div>
+
+  <div class="advanced-a">
+    <a href="#">View all latest bikes →</a>
+  </div>
+</section>
+
+
+
+
+
+
+<div class="popular-comparisons pc-section">
+    <h2>Popular Comparisons</h2>
+
+    <div class="pc-tabs">
+      <span class="pc-tab active" data-tab="bikes">Bikes</span>
+      <span class="pc-tab" data-tab="scooters">Scooters</span>
+    </div>
+
+    <!-- BIKES -->
+    <div class="pc-cards" id="bikes">
+      <!-- Bike Card 1 -->
+      <a href="compare.html?bike1=hunter350&bike2=ronin" class="pc-card">
+        <div class="pc-images">
+          <img src="images/hunter.png" alt="Hunter 350">
+          <span class="vs">VS</span>
+          <img src="images/ronin.png" alt="Ronin">
+        </div>
+        <div class="pc-info">
+          <div>
+            <h4>Royal Enfield Hunter 350</h4>
+            <p>₹1.38 - 1.67 Lakh*</p>
+          </div>
+          <div>
+            <h4>TVS Ronin</h4>
+            <p>₹1.26 - 1.60 Lakh*</p>
+          </div>
+        </div>
+        <button class="pc-btn">Hunter 350 vs Ronin</button>
+      </a>
+
+      <!-- Bike Card 2 -->
+      <a href="compare.html?bike1=cb500&bike2=mt15" class="pc-card">
+        <div class="pc-images">
+          <img src="images/cb500.png" alt="CB500">
+          <span class="vs">VS</span>
+          <img src="images/mt15.png" alt="MT15">
+        </div>
+        <div class="pc-info">
+          <div>
+            <h4>Honda CB500</h4>
+            <p>₹5.00 - 5.50 Lakh*</p>
+          </div>
+          <div>
+            <h4>Yamaha MT-15</h4>
+            <p>₹1.80 - 2.00 Lakh*</p>
+          </div>
+        </div>
+        <button class="pc-btn">CB500 vs MT-15</button>
+      </a>
+
+      <!-- Bike Card 3 -->
+      <a href="compare.html?bike1=dominar&bike2=apache310" class="pc-card">
+        <div class="pc-images">
+          <img src="images/dominar.png" alt="Dominar">
+          <span class="vs">VS</span>
+          <img src="images/apache310.png" alt="Apache 310">
+        </div>
+        <div class="pc-info">
+          <div>
+            <h4>Bajaj Dominar 400</h4>
+            <p>₹2.20 - 2.50 Lakh*</p>
+          </div>
+          <div>
+            <h4>TVS Apache RR 310</h4>
+            <p>₹2.40 - 2.70 Lakh*</p>
+          </div>
+        </div>
+        <button class="pc-btn">Dominar vs Apache 310</button>
+      </a>
+
+      <!-- Bike Card 4 -->
+      <a href="compare.html?bike1=classic350&bike2=meteor350" class="pc-card">
+        <div class="pc-images">
+          <img src="images/classic350.png" alt="Classic 350">
+          <span class="vs">VS</span>
+          <img src="images/meteor350.png" alt="Meteor 350">
+        </div>
+        <div class="pc-info">
+          <div>
+            <h4>Royal Enfield Classic 350</h4>
+            <p>₹1.50 - 1.80 Lakh*</p>
+          </div>
+          <div>
+            <h4>Royal Enfield Meteor 350</h4>
+            <p>₹1.60 - 1.90 Lakh*</p>
+          </div>
+        </div>
+        <button class="pc-btn">Classic 350 vs Meteor 350</button>
+      </a>
+    </div>
+
+    
+  </form> 
+
+  
+
+  <div id="reviews" class="review-list"></div>
+  <div id="reviewList"></div>
+
+
+</section>
+
+</header>
+
+
+  
+</body>
+<script src="indeex.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+      const tabs = document.querySelectorAll(".pc-tabs span");
+      const sections = document.querySelectorAll(".pc-cards");
+
+      tabs.forEach(tab => {
+        tab.addEventListener("click", function () {
+          tabs.forEach(t => t.classList.remove("active"));
+          this.classList.add("active");
+
+          sections.forEach(section => section.classList.add("hidden"));
+
+          const targetId = this.getAttribute("data-tab");
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) targetSection.classList.remove("hidden");
+        });
+      });
+    });
+    
+
+
+let bikeType = "new";   // new or used
+let filterType = "brand"; // brand or budget
+
+function selectNew(){
+  bikeType = "new";
+  document.getElementById("newBtn").classList.add("active");
+  document.getElementById("usedBtn").classList.remove("active");
+  updateBoxes();
+}
+
+function selectUsed(){
+  bikeType = "used";
+  document.getElementById("usedBtn").classList.add("active");
+  document.getElementById("newBtn").classList.remove("active");
+  updateBoxes();
+}
+
+function showBrand(){
+  filterType = "brand";
+  updateBoxes();
+}
+
+function showBudget(){
+  filterType = "budget";
+  updateBoxes();
+}
+
+function updateBoxes(){
+  document.getElementById("newBrand").style.display = "none";
+  document.getElementById("newBudget").style.display = "none";
+  document.getElementById("usedBrand").style.display = "none";
+  document.getElementById("usedBudget").style.display = "none";
+
+  if(bikeType === "new" && filterType === "brand"){
+    document.getElementById("newBrand").style.display = "flex";
+  }
+  if(bikeType === "new" && filterType === "budget"){
+    document.getElementById("newBudget").style.display = "flex";
+  }
+  if(bikeType === "used" && filterType === "brand"){
+    document.getElementById("usedBrand").style.display = "flex";
+  }
+  if(bikeType === "used" && filterType === "budget"){
+    document.getElementById("usedBudget").style.display = "flex";
+  }
+}
+
+function loadModels(){
+  let brand = document.getElementById("brand").value;
+  let model = document.getElementById("model");
+
+  model.innerHTML = "<option>Select Model</option>";
+
+  let data = {
+    Honda: ["Shine", "Hornet", "CBR 150R"],
+    Yamaha: ["R15", "FZ", "MT-15"],
+    Bajaj: ["Pulsar", "Dominar", "Avenger"]
+  };
+
+  if(data[brand]){
+    data[brand].forEach(bike=>{
+      let option = document.createElement("option");
+      option.text = bike;
+      model.add(option);
+    });
+  }
+}
+
+// Load default view
+updateBoxes();
+
+
+    
+
+
+
+
+fetch("PHP/api/get-bikescooter.php?type=bike")
+
+.then(res => res.json())
+.then(bikes => {
+
+  let html = "";
+
+  bikes.forEach(bike => {
+    html += `
+      <a href="bike-details.html?id=${bike.id}" class="bd-card">
+        <span class="bd-badge">Not Confirmed</span>
+        <div class="bd-img">
+          <img src="PHP/uploads/${bike.image}" alt="${bike.name}">
+        </div>
+        <div class="bd-info">
+          <h3>${bike.name}</h3>
+          <p class="bd-price">NPR ${Number(bike.price).toLocaleString()}</p>
+        </div>
+      </a>
+    `;
+  });
+
+  document.getElementById("bikeRow").innerHTML = html;
+});
+
+
+
+
+fetch("PHP/api/get-bikescooter.php?type=scooter")
+
+.then(res => res.json())
+.then(scooters => {
+
+  let html = "";
+
+  scooters.forEach(scooter => {
+    html += `
+      <a href="bike-details.html?id=${scooter.id}" class="bd-card">
+        <span class="bd-badge">Not Confirmed</span>
+        <div class="bd-img">
+          <img src="PHP/uploads/${scooter.image}" alt="${scooter.name}">
+        </div>
+        <div class="bd-info">
+          <h3>${scooter.name}</h3>
+          <p class="bd-price">NPR ${Number(scooter.price).toLocaleString()}</p>
+        </div>
+      </a>
+    `;
+  });
+
+  document.getElementById("scooterRow").innerHTML = html;
+
+});
+
+
+
+
+let selectedBikeId = null;
+
+document.getElementById("typeSelect").addEventListener("change", function(){
+  let type = this.value;
+
+  if(!type) return;
+
+  fetch(`PHP/api/get-bikes-by-type.php?type=${type}`)
+  .then(res=>res.json())
+  .then(data=>{
+    let html = `<option value="">Select ${type}</option>`;
+    data.forEach(b=>{
+      html += `<option value="${b.id}">${b.name}</option>`;
+    });
+    document.getElementById("bikeSelect").innerHTML = html;
+  });
+});
+
+document.getElementById("bikeSelect").addEventListener("change", function(){
+  selectedBikeId = this.value;
+  loadReviews();
+});
+
+
+// Load reviews
+function loadReviews(){
+  if(!selectedBikeId) return;
+
+  fetch(`PHP/api/get-review.php?bike_id=${selectedBikeId}`)
+  .then(res=>res.json())
+  .then(data=>{
+    let html="";
+
+    if(data.length==0){
+      html = "<p>No reviews yet</p>";
+    }
+
+    data.forEach(r=>{
+      html += `
+        <div class="review-card">
+          <strong>${r.user_name}</strong>
+          <div class="stars">${"★".repeat(r.rating)}</div>
+          <p>${r.review}</p>
+          <small>${r.created_at}</small>
+        </div>
+      `;
+    });
+
+    document.getElementById("reviewList").innerHTML = html;
+  });
+}
+
+document.getElementById("reviewForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  if(!selectedBikeId){
+    alert("Select Bike or Scooter first");
+    return;
+  }
+
+  const formData = new FormData(this);
+  formData.append("bike_id", selectedBikeId);
+
+  fetch("PHP/api/add-review.php",{
+    method:"POST",
+    body:formData
+  })
+  .then(res=>res.json())
+  .then(data=>{
+    if(data.status=="success"){
+      alert("✅ Review submitted successfully!");
+      this.reset();
+      setRating(0);
+      loadReviews();   // reload reviews instantly
+    }else{
+      alert("❌ Error submitting review");
+    }
+  });
+});
+
+
+
+// Star Rating
+let starBox = document.getElementById("starInput");
+let ratingInput = document.getElementById("rating");
+
+starBox.innerHTML = [1,2,3,4,5].map(i=>`<span onclick="setRating(${i})">★</span>`).join("");
+
+function setRating(r){
+ ratingInput.value = r;
+ document.querySelectorAll("#starInput span").forEach((s,i)=>{
+   s.style.color = i < r ? "gold" : "#ccc";
+ });
+}
+
+
+
+
+
+    </script>
+</html>

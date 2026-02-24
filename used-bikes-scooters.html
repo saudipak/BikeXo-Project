@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Used Bikes Listing</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    font-size: 26px;
+    color: #333;
+}
+
+header a {
+    padding: 10px 18px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+header a:hover {
+    background-color: #0056b3;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 12px 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #007bff;
+}
+
+.card-body p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.card-body .price {
+    font-weight: 600;
+    color: #333;
+    margin-top: auto;
+}
+
+@media(max-width: 600px){
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Used Bikes</h1>
+    <a href="sell-used-bikes.html">Sell Your Bike</a>
+</header>
+
+<div class="grid" id="bikeGrid">
+    <!-- Bikes will be loaded here dynamically -->
+</div>
+
+<script>
+fetch('PHP/api/get-approved-bikes.php')
+.then(res => {
+    if (!res.ok) {
+        throw new Error("HTTP error " + res.status);
+    }
+    return res.json();
+})
+.then(data => {
+    const grid = document.getElementById('bikeGrid');
+    grid.innerHTML = "";
+
+    if (data.length === 0) {
+        grid.innerHTML = "<p>No used are bikes available.</p>";
+        return;
+    }
+
+    data.forEach(bike => {
+       const card = document.createElement('a');
+card.href = `detail.php?id=${bike.id}`;
+card.className = 'card';
+card.style.textDecoration = "none";
+card.style.color = "inherit";
+
+        card.innerHTML = `
+            <img src="PHP/uploads/${bike.image1}" alt="${bike.brand} ${bike.model}">
+            <div class="card-body">
+                <h3>${bike.brand} ${bike.model}</h3>
+                <p><strong>Year:</strong> ${bike.year} | <strong>CC:</strong> ${bike.engine_cc}</p>
+                <p><strong>KMs:</strong> ${bike.km_driven}</p>
+                <p class="price">
+                    NPR ${Number(bike.price).toLocaleString()}
+                    ${bike.negotiable === 'Yes' ? '(Negotiable)' : ''}
+                </p>
+            </div>
+        `;
+
+        grid.appendChild(card);
+    });
+})
+.catch(err => {
+    console.error('Error fetching bikes:', err);
+});
+</script>
+
+</body>
+</html>

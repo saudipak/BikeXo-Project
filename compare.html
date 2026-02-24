@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BikeXo Compare</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<style>
+
+body{
+background:linear-gradient(135deg,#eef2ff,#f8f9fa);
+font-family:'Poppins',sans-serif;
+margin:0;
+padding:0;
+}
+
+.title{
+text-align:center;
+margin:40px 0 20px;
+font-weight:700;
+font-size:30px;
+color:#111;
+}
+
+.compare-box{
+width:95%;
+max-width:1000px;
+margin:auto;
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:0 20px 60px rgba(0,0,0,0.08);
+}
+
+.type-select{
+text-align:center;
+margin-bottom:25px;
+}
+
+.type-select select{
+padding:12px 25px;
+border-radius:12px;
+border:1px solid #ddd;
+font-weight:600;
+cursor:pointer;
+}
+
+.selection-area{
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:15px;
+}
+
+select{
+padding:14px;
+width:42%;
+border-radius:12px;
+border:1px solid #ccc;
+font-size:14px;
+transition:0.3s;
+}
+
+select:focus{
+border-color:#4263eb;
+outline:none;
+}
+
+.vs{
+font-size:22px;
+font-weight:700;
+color:#868e96;
+}
+
+button{
+padding:14px;
+background:#4263eb;
+color:white;
+border:none;
+border-radius:14px;
+cursor:pointer;
+font-weight:600;
+margin-top:20px;
+width:100%;
+transition:0.3s;
+}
+
+button:hover{
+background:#364fc7;
+}
+
+.result{
+display:none;
+margin-top:35px;
+animation:fade 0.5s ease-in-out;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+.names{
+display:flex;
+justify-content:space-between;
+font-weight:600;
+font-size:18px;
+margin-bottom:15px;
+}
+
+.images{
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
+}
+
+.images img{
+width:45%;
+height:180px;
+object-fit:contain;
+background:#f8f9fa;
+border-radius:15px;
+padding:15px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-bottom:25px;
+}
+
+td{
+border:1px solid #f1f3f5;
+padding:14px;
+text-align:center;
+font-size:14px;
+}
+
+tr:first-child td{
+background:#f1f3f5;
+font-weight:600;
+}
+
+/* ===== FINAL SINGLE BAR ===== */
+
+.final-bar-container{
+margin-top:25px;
+}
+
+.final-bar-bg{
+width:100%;
+height:30px;
+background:#e9ecef;
+border-radius:40px;
+display:flex;
+overflow:hidden;
+}
+
+.final-bar-bg{
+width:100%;
+height:35px;
+background:#ddd;
+border-radius:50px;
+display:flex;
+overflow:hidden;
+}
+
+.final-bar{
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-weight:600;
+font-size:13px;
+transition:width 0.8s ease;
+}
+
+
+.spec-col{
+background:#f1f3f5;
+font-weight:600;
+width:200px;
+text-align:center;
+}
+
+table tr:first-child td{
+font-weight:700;
+font-size:16px;
+background:#e9ecef;
+}
+
+.better{
+background:#e6fcf5 !important;   /* light green */
+color:#0eaf7e;
+font-weight:600;
+}
+
+.worse{
+background:#fff5f5 !important;   /* light red */
+color:#c91c1c;
+font-weight:600;
+}
+
+</style>
+
+<body>
+
+<h2 class="title">Compare Bikes & Scooters</h2>
+
+<div class="compare-box">
+
+<div class="type-select">
+  <select id="vehicleType">
+    <option value="bike">Bike</option>
+    <option value="scooter">Scooter</option>
+  </select>
+</div>
+
+<div class="selection-area">
+<select id="select1">
+  <option value="">Select First</option>
+</select>
+
+<span class="vs">VS</span>
+
+<select id="select2">
+  <option value="">Select Second</option>
+</select>
+</div>
+
+<button id="compareBtn">Compare Now</button>
+
+<div class="result" id="result">
+
+  <div class="names">
+    <span id="name1"></span>
+    <span id="name2"></span>
+  </div>
+
+  <div class="images">
+    <img id="img1">
+    <img id="img2">
+  </div>
+
+<table>
+  <tr>
+    <td id="head1"></td>
+    <td class="spec-col">Specification</td>
+    <td id="head2"></td>
+  </tr>
+
+  <tr>
+    <td id="p1"></td>
+    <td class="spec-col">Price</td>
+    <td id="p2"></td>
+  </tr>
+
+  <tr>
+    <td id="cc1"></td>
+    <td class="spec-col">CC</td>
+    <td id="cc2"></td>
+  </tr>
+
+  <tr>
+    <td id="m1"></td>
+    <td class="spec-col">Mileage</td>
+    <td id="m2"></td>
+  </tr>
+
+  <tr>
+    <td id="t1"></td>
+    <td class="spec-col">Top Speed</td>
+    <td id="t2"></td>
+  </tr>
+
+  <tr>
+    <td id="pow1"></td>
+    <td class="spec-col">Power</td>
+    <td id="pow2"></td>
+  </tr>
+
+  <tr>
+    <td id="r1"></td>
+    <td class="spec-col">Avg Rating</td>
+    <td id="r2"></td>
+  </tr>
+</table>
+
+
+  <!-- SINGLE RESULT BAR -->
+  <div class="final-bar-bg">
+   <div class="final-bar" id="barWinner"></div>
+   <div class="final-bar" id="barLoser"></div>
+</div>
+
+  <h3 id="winner"></h3>
+
+</div>
+
+</div>
+
+<script>
+
+const select1 = document.getElementById("select1");
+const select2 = document.getElementById("select2");
+const vehicleType = document.getElementById("vehicleType");
+
+function loadVehicles(type){
+
+select1.innerHTML = `<option value="">Select First</option>`;
+select2.innerHTML = `<option value="">Select Second</option>`;
+
+fetch("PHP/api/get-bikescooter.php?type="+type)
+.then(res => res.json())
+.then(data => {
+
+  data.forEach(vehicle => {
+    select1.innerHTML += `<option value="${vehicle.id}">${vehicle.name}</option>`;
+    select2.innerHTML += `<option value="${vehicle.id}">${vehicle.name}</option>`;
+  });
+
+});
+}
+
+loadVehicles("bike");
+
+vehicleType.addEventListener("change", function(){
+  loadVehicles(this.value);
+});
+
+document.getElementById("compareBtn").onclick = function(){
+
+  let id1 = select1.value;
+  let id2 = select2.value;
+
+  if(!id1 || !id2){
+    alert("Select two vehicles");
+    return;
+  }
+
+  fetch(`PHP/api/get-compare.php?id1=${id1}&id2=${id2}`)
+  .then(res => res.json())
+  .then(data => {
+
+    let b1 = data.bike1;
+    let b2 = data.bike2;
+
+    document.getElementById("result").style.display="block";
+
+    head1.innerText = b1.name;
+    head2.innerText = b2.name;
+
+    img1.src = "PHP/uploads/"+b1.image;
+    img2.src = "PHP/uploads/"+b2.image;
+
+    p1.innerText = "NPR " + b1.price;
+    p2.innerText = "NPR " + b2.price;
+
+    cc1.innerText = b1.cc;
+    cc2.innerText = b2.cc;
+
+    m1.innerText = b1.mileage;
+    m2.innerText = b2.mileage;
+
+    t1.innerText = b1.top_speed;
+    t2.innerText = b2.top_speed;
+
+    r1.innerText = b1.avg_rating + " / 5";
+    r2.innerText = b2.avg_rating + " / 5";
+
+
+    /* ===============================
+       FIX MILEAGE RANGE (50-55)
+    =============================== */
+
+    function getMileageAverage(mileage){
+        if(mileage.includes("-")){
+            let parts = mileage.split("-");
+            return (parseFloat(parts[0]) + parseFloat(parts[1])) / 2;
+        }
+        return parseFloat(mileage);
+    }
+
+
+    /* ===============================
+       SCORE CALCULATION
+    =============================== */
+
+    let score1 = 
+        parseFloat(b1.cc) +
+        getMileageAverage(b1.mileage) +
+        parseFloat(b1.top_speed) +
+        parseFloat(b1.avg_rating);
+
+    let score2 = 
+        parseFloat(b2.cc) +
+        getMileageAverage(b2.mileage) +
+        parseFloat(b2.top_speed) +
+        parseFloat(b2.avg_rating);
+
+    let total = score1 + score2;
+
+    let percent1 = (score1 / total) * 100;
+    let percent2 = (score2 / total) * 100;
+
+
+    /* ===============================
+       SINGLE 100% BAR SYSTEM
+    =============================== */
+
+    let barWinner = document.getElementById("barWinner");
+    let barLoser = document.getElementById("barLoser");
+
+    if(score1 > score2){
+
+        barWinner.style.width = percent1 + "%";
+        barLoser.style.width = percent2 + "%";
+
+        barWinner.style.background = "#2f9e44";  // green
+        barLoser.style.background = "#e03131";   // red
+
+        barWinner.innerText = percent1.toFixed(1) + "%";
+        barLoser.innerText = percent2.toFixed(1) + "%";
+
+        winner.innerText = b1.name + " Wins";
+
+    } else {
+
+        barWinner.style.width = percent2 + "%";
+        barLoser.style.width = percent1 + "%";
+
+        barWinner.style.background = "#2f9e44";
+        barLoser.style.background = "#e03131";
+
+        barWinner.innerText = percent2.toFixed(1) + "%";
+        barLoser.innerText = percent1.toFixed(1) + "%";
+
+        winner.innerText = b2.name + " Wins";
+    }
+
+
+    /* ===============================
+       SPEC HIGHLIGHT SYSTEM
+    =============================== */
+
+    function highlightBetter(val1, val2, el1, el2, lowerIsBetter=false){
+
+        el1.classList.remove("better","worse");
+        el2.classList.remove("better","worse");
+
+        if(lowerIsBetter){
+
+            if(val1 < val2){
+                el1.classList.add("better");
+                el2.classList.add("worse");
+            } else if(val1 > val2){
+                el2.classList.add("better");
+                el1.classList.add("worse");
+            }
+
+        } else {
+
+            if(val1 > val2){
+                el1.classList.add("better");
+                el2.classList.add("worse");
+            } else if(val1 < val2){
+                el2.classList.add("better");
+                el1.classList.add("worse");
+            }
+
+        }
+    }
+
+    // PRICE (LOWER IS BETTER)
+    highlightBetter(parseFloat(b1.price), parseFloat(b2.price), p1, p2, true);
+
+    // CC
+    highlightBetter(parseFloat(b1.cc), parseFloat(b2.cc), cc1, cc2);
+
+    // MILEAGE
+    highlightBetter(getMileageAverage(b1.mileage), getMileageAverage(b2.mileage), m1, m2);
+
+    // TOP SPEED
+    highlightBetter(parseFloat(b1.top_speed), parseFloat(b2.top_speed), t1, t2);
+
+
+    // RATING
+    highlightBetter(parseFloat(b1.avg_rating), parseFloat(b2.avg_rating), r1, r2);
+
+  });
+
+}
+
+</script>
+
+
+</body>
+</html>

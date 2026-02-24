@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sell Your Bike / Scooter</title>
+
+<style>
+    /* ---------- General ---------- */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background-color: #f8f9fa;
+        padding: 15px;
+    }
+
+    .container {
+        max-width: 750px;
+        margin: 30px auto;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        padding: 25px 30px;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #333;
+        font-size: 26px;
+    }
+
+    h3 {
+        color: #555;
+        margin-top: 20px;
+        margin-bottom: 12px;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 3px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 3px;
+        font-size: 14px;
+        color: #444;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 8px 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        transition: 0.3s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 4px rgba(0,123,255,0.2);
+        outline: none;
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+    .full-width {
+        grid-column: 1 / -1;
+    }
+
+    button {
+        grid-column: 1 / -1;
+        padding: 12px;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 16px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .error {
+        color: red;
+        font-size: 13px;
+        margin-top: -8px;
+        margin-bottom: 8px;
+        grid-column: 1 / -1;
+    }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+        form {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Sell Your Used Bike / Scooter</h2>
+
+    <form id="bikeForm" action="PHP/api/submit-bikes.php" method="POST" enctype="multipart/form-data">
+
+        <!-- Seller Info -->
+        <h3 class="full-width">Seller Information</h3>
+
+        <label>Full Name</label>
+        <input type="text" name="seller_name" required>
+
+        <label>Phone Number</label>
+        <input type="text" name="phone" id="phone" required>
+        <div id="phoneError" class="error"></div>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>District</label>
+        <input type="text" name="district" required>
+
+        <label>City</label>
+        <input type="text" name="city" required>
+
+        <!-- Bike Details -->
+        <h3 class="full-width">Bike Details</h3>
+
+        <label>Brand</label>
+        <input type="text" name="brand" required>
+
+        <label>Model</label>
+        <input type="text" name="model" required>
+
+        <label>Year</label>
+        <input type="number" name="year" min="2000" max="2026" required>
+
+        <label>Engine CC</label>
+        <input type="number" name="engine_cc" required>
+
+        <label>Category</label>
+        <select name="category" required>
+            <option value="">Select</option>
+            <option value="Bike">Bike</option>
+            <option value="Scooter">Scooter</option>
+        </select>
+
+        <!-- Condition -->
+        <h3 class="full-width">Bike Condition</h3>
+
+        <label>Kilometers Driven</label>
+        <input type="number" name="km_driven" required>
+
+        <label>Condition</label>
+        <select name="bike_condition" required>
+            <option value="">Select</option>
+            <option value="Excellent">Excellent</option>
+            <option value="Good">Good</option>
+            <option value="Average">Average</option>
+        </select>
+
+        <label>Previous Owners</label>
+        <input type="number" name="previous_owners" required>
+
+        <label>Accident History</label>
+        <select name="accident_history" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select>
+
+        <label>Service Record Available</label>
+        <select name="service_record" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select>
+
+        <!-- Legal Info & Pricing -->
+        <h3 class="full-width">Legal & Pricing</h3>
+
+        <label>Bluebook Status</label>
+        <select name="bluebook_status" required>
+            <option value="Updated">Updated</option>
+            <option value="Expired">Expired</option>
+        </select>
+
+        <label>Tax Paid Until (Year)</label>
+        <input type="number" name="tax_valid_until" required>
+
+        <label>Insurance Valid Until</label>
+        <input type="date" name="insurance_valid" required>
+
+        <label>Expected Price (NPR)</label>
+        <input type="number" name="price" required>
+
+        <label>Negotiable</label>
+        <select name="negotiable" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <!-- Description -->
+        <label class="full-width">Description</label>
+        <textarea name="description" rows="4" class="full-width" placeholder="Add details about the bike condition, accessories, reason for selling..." required></textarea>
+
+        <!-- Images -->
+        <label class="full-width">Upload Images (Minimum 3)</label>
+        <input type="file" name="image1" required>
+        <input type="file" name="image2" required>
+        <input type="file" name="image3" required>
+
+        <button type="submit">Submit for Approval</button>
+
+    </form>
+</div>
+
+<script>
+document.getElementById("bikeForm").addEventListener("submit", function(event) {
+    let phone = document.getElementById("phone").value;
+    let phoneError = document.getElementById("phoneError");
+
+    if(phone.length < 10 || isNaN(phone)) {
+        phoneError.innerHTML = "Phone number must be 10 digits.";
+        event.preventDefault();
+    } else {
+        phoneError.innerHTML = "";
+    }
+});
+
+
+
+</script>
+
+</body>
+</html>

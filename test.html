@@ -1,323 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Popular Comparisons</title>
-  <style>
-    .pc-section {
-      background: #fff;
-      padding: 24px;
-      border-radius: 16px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
-    }
+<?php
+$conn = new mysqli("localhost","root","","bikexo");
 
-    h2 {
-      margin-bottom: 20px;
-    }
+if(!isset($_GET['bike_id'])){
+    echo json_encode([]);
+    exit;
+}
 
-    .pc-tabs {
-      display: flex;
-      gap: 20px;
-      border-bottom: 1px solid #ddd;
-      margin-bottom: 20px;
-    }
+$bike_id = intval($_GET['bike_id']);
 
-    .pc-tabs span {
-      padding: 10px 20px;
-      cursor: pointer;
-      color: #555;
-    }
+$sql = "SELECT * FROM reviews WHERE bike_id=$bike_id ORDER BY id DESC";
+$result = $conn->query($sql);
 
-    .pc-tabs .active {
-      color: #000;
-      border-bottom: 2px solid red;
-      font-weight: 600;
-    }
+$reviews = [];
 
-    .pc-cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
+while($row = $result->fetch_assoc()){
+    $reviews[] = $row;
+}
 
-    .pc-card {
-      border: 1px solid #e6e6e6;
-      border-radius: 14px;
-      padding: 12px;
-      text-decoration: none;
-      color: #000;
-      transition: box-shadow 0.3s;
-    }
+echo json_encode($reviews);
+?>
 
-    .pc-card:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
 
-    .pc-images {
-      position: relative;
-      height: 150px;
-      background: #eaeaea;
-      border-radius: 12px;
-      padding: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
 
-    .pc-images img {
-      width: 42%;
-      object-fit: contain;
-    }
 
-    .vs {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      background: #111;
-      color: #fff;
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 50%;
-    }
 
-    .pc-info {
-      display: flex;
-      justify-content: space-between;
-      margin: 12px 0;
-    }
 
-    .pc-info h4 {
-      font-size: 14px;
-      margin: 0;
-    }
 
-    .pc-info p {
-      font-size: 13px;
-      margin: 4px 0 0;
-    }
+ <table>
+ <tr>
+    <th>User</th>
+    <th>Rating</th>
+    <th>Review</th>
+    <th>Action</th>
+</tr>
 
-    .pc-btn {
-      width: 100%;
-      border: 1px solid red;
-      background: #fff;
-      color: red;
-      padding: 10px;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-    }
+<?php while($r = mysqli_fetch_assoc($reviews)) { ?>
+ <tr>
+    <td><?php echo $r['user_name']; ?></td>
+    <td>⭐ <?php echo $r['rating']; ?>/5</td>
+    <td><?php echo $r['review']; ?></td>
+    <td>
+        <button class="delete" onclick="deleteReview(<?php echo $r['id']; ?>, this)">Delete</button>
 
-    .pc-view {
-      display: inline-block;
-      margin-top: 18px;
-      color: #0066ff;
-      text-decoration: none;
-    }
+    </td>
+</tr>
+<?php } ?>
 
-    .hidden {
-      display: none;
-    }
+</table>
 
-  </style>
-</head>
-<body>
-  <div class="popular-comparisons pc-section">
-    <h2>Popular Comparisons</h2>
 
-    <div class="pc-tabs">
-      <span class="pc-tab active" data-tab="bikes">Bikes</span>
-      <span class="pc-tab" data-tab="scooters">Scooters</span>
-    </div>
 
-    <!-- BIKES -->
-    <div class="pc-cards" id="bikes">
-      <!-- Bike Card 1 -->
-      <a href="compare.html?bike1=hunter350&bike2=ronin" class="pc-card">
-        <div class="pc-images">
-          <img src="images/hunter.png" alt="Hunter 350">
-          <span class="vs">VS</span>
-          <img src="images/ronin.png" alt="Ronin">
-        </div>
-        <div class="pc-info">
-          <div>
-            <h4>Royal Enfield Hunter 350</h4>
-            <p>₹1.38 - 1.67 Lakh*</p>
-          </div>
-          <div>
-            <h4>TVS Ronin</h4>
-            <p>₹1.26 - 1.60 Lakh*</p>
-          </div>
-        </div>
-        <button class="pc-btn">Hunter 350 vs Ronin</button>
-      </a>
 
-      <!-- Bike Card 2 -->
-      <a href="compare.html?bike1=cb500&bike2=mt15" class="pc-card">
-        <div class="pc-images">
-          <img src="images/cb500.png" alt="CB500">
-          <span class="vs">VS</span>
-          <img src="images/mt15.png" alt="MT15">
-        </div>
-        <div class="pc-info">
-          <div>
-            <h4>Honda CB500</h4>
-            <p>₹5.00 - 5.50 Lakh*</p>
-          </div>
-          <div>
-            <h4>Yamaha MT-15</h4>
-            <p>₹1.80 - 2.00 Lakh*</p>
-          </div>
-        </div>
-        <button class="pc-btn">CB500 vs MT-15</button>
-      </a>
 
-      <!-- Bike Card 3 -->
-      <a href="compare.html?bike1=dominar&bike2=apache310" class="pc-card">
-        <div class="pc-images">
-          <img src="images/dominar.png" alt="Dominar">
-          <span class="vs">VS</span>
-          <img src="images/apache310.png" alt="Apache 310">
-        </div>
-        <div class="pc-info">
-          <div>
-            <h4>Bajaj Dominar 400</h4>
-            <p>₹2.20 - 2.50 Lakh*</p>
-          </div>
-          <div>
-            <h4>TVS Apache RR 310</h4>
-            <p>₹2.40 - 2.70 Lakh*</p>
-          </div>
-        </div>
-        <button class="pc-btn">Dominar vs Apache 310</button>
-      </a>
+<?php
+$conn = new mysqli("localhost","root","","bikexo");
 
-      <!-- Bike Card 4 -->
-      <a href="compare.html?bike1=classic350&bike2=meteor350" class="pc-card">
-        <div class="pc-images">
-          <img src="images/classic350.png" alt="Classic 350">
-          <span class="vs">VS</span>
-          <img src="images/meteor350.png" alt="Meteor 350">
-        </div>
-        <div class="pc-info">
-          <div>
-            <h4>Royal Enfield Classic 350</h4>
-            <p>₹1.50 - 1.80 Lakh*</p>
-          </div>
-          <div>
-            <h4>Royal Enfield Meteor 350</h4>
-            <p>₹1.60 - 1.90 Lakh*</p>
-          </div>
-        </div>
-        <button class="pc-btn">Classic 350 vs Meteor 350</button>
-      </a>
-    </div>
+$sql = "
+SELECT reviews.id, reviews.user_name, reviews.rating, reviews.review, reviews.created_at,
+       bikes.name AS bike_name
+FROM reviews
+JOIN bikes ON reviews.bike_id = bikes.id
+ORDER BY reviews.id DESC
+";
 
-    <!-- SCOOTERS -->
-    <div class="pc-cards hidden" id="scooters">
-      <!-- Scooter Card 1 -->
-      <a href="compare.html?scooter1=activa&scooter2=jupiter" class="pc-card">
-        <div class="pc-images">
-          <img src="images/activa.png" alt="Activa">
-          <span class="vs">VS</span>
-          <img src="images/jupiter.png" alt="Jupiter">
-        </div>
-        <div class="pc-info">
-          <div>
-            <h4>Honda Activa 6G</h4>
-            <p>₹76,000 - 82,000*</p>
-          </div>
-          <div>
-            <h4>TVS Jupiter</h4>
-            <p>₹74,000 - 80,000*</p>
-          </div>
-        </div>
-        <button class="pc-btn">Activa vs Jupiter</button>
-      </a>
+$result = $conn->query($sql);
 
-      <!-- Scooter Card 2 -->
-      <a href="compare.html?scooter1=scooty&scooter2=vespa" class="pc-card">
-        <div class="pc-images">
-          <img src="images/scooty.png" alt="Scooty">
-          <span class="vs">VS</span>
-          <img src="images/vespa.png" alt="Vespa">
-        </div>
-        <div class="pc-info">
-          <div>
-            <h4>TVS Scooty Pep+</h4>
-            <p>₹65,000 - 70,000*</p>
-          </div>
-          <div>
-            <h4>Vespa SXL</h4>
-            <p>₹1,20,000 - 1,30,000*</p>
-          </div>
-        </div>
-        <button class="pc-btn">Scooty vs Vespa</button>
-      </a>
+$data=[];
+while($row = $result->fetch_assoc()){
+    $data[]=$row;
+}
 
-      <!-- Scooter Card 3 -->
-      <a href="compare.html?scooter1=jog&bike2=pleasure" class="pc-card">
-        <div class="pc-images">
-          <img src="images/jog.png" alt="Jog">
-          <span class="vs">VS</span>
-          <img src="images/pleasure.png" alt="Pleasure">
-        </div>
-        <div class="pc-info">
-          <div>
-            <h4>Yamaha Jog</h4>
-            <p>₹70,000 - 75,000*</p>
-          </div>
-          <div>
-            <h4>Honda Pleasure</h4>
-            <p>₹68,000 - 73,000*</p>
-          </div>
-        </div>
-        <button class="pc-btn">Jog vs Pleasure</button>
-      </a>
-
-      <!-- Scooter Card 4 -->
-      <a href="compare.html?scooter1=maestro&scooter2=destini" class="pc-card">
-        <div class="pc-images">
-          <img src="images/maestro.png" alt="Maestro">
-          <span class="vs">VS</span>
-          <img src="images/destini.png" alt="Destini">
-        </div>
-        <div class="pc-info">
-          <div>
-            <h4>TVS Maestro Edge</h4>
-            <p>₹85,000 - 90,000*</p>
-          </div>
-          <div>
-            <h4>Hero Destini 125</h4>
-            <p>₹78,000 - 82,000*</p>
-          </div>
-        </div>
-        <button class="pc-btn">Maestro vs Destini</button>
-      </a>
-    </div>
-
-    <a href="compare.html" class="pc-view">View All Comparisons</a>
-  </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const tabs = document.querySelectorAll(".pc-tabs span");
-      const sections = document.querySelectorAll(".pc-cards");
-
-      tabs.forEach(tab => {
-        tab.addEventListener("click", function () {
-          tabs.forEach(t => t.classList.remove("active"));
-          this.classList.add("active");
-
-          sections.forEach(section => section.classList.add("hidden"));
-
-          const targetId = this.getAttribute("data-tab");
-          const targetSection = document.getElementById(targetId);
-          if (targetSection) targetSection.classList.remove("hidden");
-        });
-      });
-    });
-  </script>
-</body>
-</html>
+echo json_encode($data);
+?>
